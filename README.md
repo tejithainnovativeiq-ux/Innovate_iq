@@ -61,3 +61,84 @@ InnovateIQ-Backend/
 ├── .env                             # Environment Variables
 ├── database.sql                     # Database Schema SQL Export
 └── README.md                        # Documentation
+
+⚙️ Installation & Local Setup
+1. Clone & Place Project
+Place the project folder inside your web server root (e.g., d:/xampp/htdocs/InnovateIQ-Backend).
+
+2. Configure Environment (.env)
+Create or verify the .env file in the root directory:
+
+ini
+
+
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=innovate_iq_db
+DB_USERNAME=root
+DB_PASSWORD=
+3. Database Setup
+Import database.sql into MySQL using phpMyAdmin or the MySQL Command Line:
+
+bash
+
+
+mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS innovate_iq_db;"
+mysql -u root -p innovate_iq_db < database.sql
+4. Running the Application
+Option A: Via XAMPP (Apache)
+Open your browser and navigate to:
+
+text
+
+
+http://localhost/InnovateIQ-Backend/public/registrations_dashboard_admin.html
+Option B: Via PHP Built-in Server
+Run the following command from the project root:
+
+bash
+
+
+php -S localhost:8000 -t public
+Then visit: http://localhost:8000/registrations_dashboard_admin.html
+
+📡 API Endpoints Reference
+All API requests accept and return JSON formatted payloads (Content-Type: application/json).
+
+1. Student Registrations APIs
+Method	Endpoint	Description
+GET	/api/registrations	Fetch all student registrations
+POST	/api/register	Register a new student candidate
+POST	/api/registrations/update-status	Update candidate status (Pending, Approved, Rejected)
+POST	/api/registrations/update	Update candidate profile details
+Payload Example: Update Student Status
+json
+
+
+{
+  "registration_code": "REG-2026-0015",
+  "academic_status": "Approved"
+}
+2. Campus Ambassador APIs
+Method	Endpoint	Description
+GET	/api/ambassadors	Fetch all campus ambassador registrations
+POST	/api/ambassadors/register	Register a new campus ambassador
+POST	/api/ambassadors/update-status	Update ambassador application status
+POST	/api/ambassadors/update	Update ambassador profile details
+Payload Example: Register Campus Ambassador
+json
+
+
+{
+  "full_name": "Venkatesh Prasad",
+  "gender": "Male",
+  "date_of_birth": "2004-09-18",
+  "mobile_number": "8877665544",
+  "email_address": "venkat.p@example.com",
+  "residential_address": "Hyderabad, Telangana",
+  "college_name": "VNR VJIET",
+  "course_name": "B.Tech",
+  "branch_specialization": "IT",
+  "year_of_study": "3rd Year",
+  "declaration_accepted": 1
+}
